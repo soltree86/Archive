@@ -1,0 +1,40 @@
+<section data-ng-controller="ArchivesController">
+    <div class="page-header">
+        <h1>New Archive</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="title">Name</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="title" id="title" class="form-control" placeholder="Title" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="description">Description</label>
+                    <div class="controls">
+                        <textarea name="description" data-ng-model="description" id="description" class="form-control" cols="30" rows="10" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <a class="btn btn-default" ng-click="createMedia()">Add Media</a>
+                    <ul class="list-group">
+                        <li data-ng-repeat="m in media" class="list-group-item">{{m.title}}</li>
+                    </ul>
+                    <div class="alert alert-warning text-center" data-ng-hide="!media || media.length">
+                        No Media yet, why don't you create one?
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+</section>

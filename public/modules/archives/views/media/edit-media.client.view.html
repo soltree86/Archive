@@ -1,0 +1,42 @@
+<div class="modal-header">
+	    <h3 class="modal-title">Create a Media</h3>
+</div>
+<div class="modal-body">
+    <form name="mediaForm" data-ng-submit="updateMedia()" novalidate>
+    	<fieldset>
+			<div class="form-group" ng-class="{ 'has-error': mediaForm.title.$dirty && mediaForm.title.$invalid }">
+				<label class="control-label" for="title">Title</label>
+				<div class="controls">
+					<input name="title" type="text" data-ng-model="media.title" id="title" class="form-control" placeholder="Title" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="videoUrl">Video URL</label>
+				<div class="controls">
+					<input name="videoUrl" type="text" data-ng-model="media.videoUrl" id="videoUrl" class="form-control" placeholder="Video URL">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="thumbnailUrl">Thumbnail URL</label>
+				<div class="controls">
+					<input name="thumbnailUrl" type="text" data-ng-model="media.thumbnailUrl" id="thumbnailUrl" class="form-control" placeholder="Thumbnail URL">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="docUrl">Document URL</label>
+				<div class="controls">
+					<input name="docUrl" type="text" data-ng-model="media.docUrl" id="docUrl" class="form-control" placeholder="Document URL">
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-default" ng-disabled="mediaForm.title.$invalid">
+			</div>
+			<div data-ng-show="error" class="text-danger">
+				<strong data-ng-bind="error"></strong>
+			</div>
+		</fieldset>
+    </form> 
+    <div class="form-group">
+		<button class="btn btn-default" ng-click="cancel()">Cancel</button>
+	</div>
+</div>

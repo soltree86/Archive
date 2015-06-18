@@ -1,0 +1,68 @@
+body {
+	background: #ebebeb;	
+}
+
+header {
+	height: 54px;
+	padding-bottom: 85px;
+	border-bottom: 1px solid black;
+	line-height: 100%;
+}
+
+nav {
+	margin-top: 25px;
+}
+
+ul._topmenu {
+	list-style: none;
+}
+
+li._topmenu {
+	float: left;
+	margin-right: 100px;
+	font-size: 24px;
+}
+
+a, a:hover, a:visited, a:active, a:focus  {
+	text-decoration: none;
+	color: black; 
+}
+
+.content {
+	margin-top: 20px;
+}
+
+.container { 
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px #888;
+	box-shadow: 0 0 5px #888;
+	background: white;
+	padding: 40px 50px;
+}
+
+.logo {
+	float: left;
+	display: block;
+}
+
+.right {
+	float: right;
+}
+
+.media-list { 
+	width:420px;
+}
+
+.undecorated-link:hover {
+	text-decoration: none;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+
