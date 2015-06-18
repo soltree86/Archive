@@ -1,44 +1,44 @@
 <section data-ng-controller="ArchivesController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="archive.title"></h1>
+		<h3 data-ng-bind="archive.title"></h3>
 	</div>
-	<div class="row">
-		<div class="col-md-7">
-			<iframe src="http://player.vimeo.com/video/51941090?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;color=ffffff" width="640" height="361" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+	<div class="mediaContainer">
+		<div class="videoContainer">
+			<iframe ng-src="{{archive.media[0].videoUrl | trusted}}" width="640" height="361" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
 		</div>
-		<div class="col-md-5">
-			<div class="media-list">
-				<div data-ng-repeat="m in archive.media" class="media">
+		<div class="mediaList">
+			<div data-ng-repeat="m in archive.media" class="media single-media">
+				<a data-ng-href="#!/archives/{{archive._id}}" >
 			        <div class="media-left">
-			            <a data-ng-href="#!/archives/{{archive._id}}" >
 			                <img class="media-object" ng-src="{{m.thumbnailUrl}}" alt="example">
-			            </a>
 			        </div>
 			        <div class="media-body">
 			            <h4 class="media-heading"  data-ng-bind="m.title"></h4>
 			        </div>
-			    </div>
+		        </a>
 		    </div>
 	    </div>
 	</div>
 	<!-- <img class="media-object" ng-src="https://i.vimeocdn.com/video/23566238_100x75.webp" alt="example"> -->
+	<br />
+	<br />
 
-
-
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == archive.user._id))">
-		<a class="btn btn-primary" href="/#!/archives/{{archive._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
+	<div>
+		<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == archive.user._id))">
+			<a class="btn btn-primary" href="/#!/archives/{{archive._id}}/edit">
+				<i class="glyphicon glyphicon-edit"></i>
+			</a>
+			<a class="btn btn-primary" data-ng-click="remove();">
+				<i class="glyphicon glyphicon-trash"></i>
+			</a>
+		</div>
+		<small>
+			<em class="text-muted">
+				Posted on
+				<span data-ng-bind="archive.created | date:'mediumDate'"></span>
+				by
+				<span data-ng-bind="archive.user.displayName"></span>
+			</em>
+		</small>
 	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="archive.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="archive.user.displayName"></span>
-		</em>
-	</small>
 </section>

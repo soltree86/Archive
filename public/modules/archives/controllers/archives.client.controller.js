@@ -85,10 +85,14 @@ angular.module('archives').controller('ArchivesController', ['$scope', '$modal',
 
 			modalInstance.result.then(function (media) {				
 				if(media) {
-					if(!$scope.media) {
-						$scope.media = [];
+					if($scope.archive) {
+						$scope.archive.media.push(media);
+					} else {
+						if(!$scope.media) {
+							$scope.media = [];
+						}
+						$scope.media.push(media);
 					}
-					$scope.media.push(media);
 				}
 				
 		    }, function () {
