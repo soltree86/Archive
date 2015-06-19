@@ -1,0 +1,15 @@
+<div class="videoContainer">
+	<iframe ng-src="{{selectedMedia.videoUrl | trusted}}" width="640" height="361" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+</div>
+<div class="mediaList">
+	<div data-ng-repeat="m in media" class="media single-media">
+		<a href="" ng-click="setMedia(m)">
+	        <div class="media-left">
+	                <img class="media-object" ng-src="{{m.thumbnailUrl}}" alt="example">
+	        </div>
+	        <div class="media-body">
+	            <h4 class="media-heading"  data-ng-bind="m.title"></h4>
+	        </div>
+        </a>
+    </div>
+</div>

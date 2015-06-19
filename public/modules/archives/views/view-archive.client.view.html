@@ -3,23 +3,8 @@
 		<h3 data-ng-bind="archive.title"></h3>
 	</div>
 	<div class="mediaContainer">
-		<div class="videoContainer">
-			<iframe ng-src="{{archive.media[0].videoUrl | trusted}}" width="640" height="361" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-		</div>
-		<div class="mediaList">
-			<div data-ng-repeat="m in archive.media" class="media single-media">
-				<a data-ng-href="#!/archives/{{archive._id}}" >
-			        <div class="media-left">
-			                <img class="media-object" ng-src="{{m.thumbnailUrl}}" alt="example">
-			        </div>
-			        <div class="media-body">
-			            <h4 class="media-heading"  data-ng-bind="m.title"></h4>
-			        </div>
-		        </a>
-		    </div>
-	    </div>
+		<media info="archive.media"></media>
 	</div>
-	<!-- <img class="media-object" ng-src="https://i.vimeocdn.com/video/23566238_100x75.webp" alt="example"> -->
 	<br />
 	<br />
 
