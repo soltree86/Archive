@@ -21,7 +21,11 @@
                 <div class="form-group">
                     <a class="btn btn-default" ng-click="createMedia()">Add Media</a>
                     <ul class="list-group">
-                        <li data-ng-repeat="m in media" class="list-group-item">{{m.title}}</li>
+                        <li data-ng-repeat="m in media" class="list-group-item">
+                            {{m.title}}
+                            <a class="btn btn-default" ng-click="editMedia({{m}})">Edit</a>
+                            <a class="btn btn-default" ng-click="removeMedia({{m}})">Remove</a>
+                        </li>
                     </ul>
                     <div class="alert alert-warning text-center" data-ng-hide="!media || media.length">
                         No Media yet, why don't you create one?

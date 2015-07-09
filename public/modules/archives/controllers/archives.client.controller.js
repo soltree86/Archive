@@ -8,15 +8,22 @@ angular.module('archives').controller('ArchivesController', ['$scope', '$modal',
 		// Create new Archive
 		$scope.create = function() {
 			// Create new Archive object
-			var thumbnailUrl = null;
+			var thumbnail = 'modules/archives/img/no_image_available.png';
 			if($scope.media && $scope.media.length) {
-				thumbnailUrl = $scope.media[0].thumbnailUrl;
+				for (var i in $scope.media) {
+					if ($scope.media[i].mediaType === 'vimeo') {
+						thumbnail = 'https://i.vimeocdn.com/video/' + $scope.media[0].mediaInfo + '_200x150.webp';
+						break;
+					} else {
+						thumbnail = 'modules/archives/img/soundcloud.png';
+					}
+				}
 			}
 
 			var archive = new Archives ({
 				title: this.title,
 				description: this.description,
-				thumbnailUrl: thumbnailUrl,
+				thumbnail: thumbnail,
 				media:$scope.media
 			});
 
@@ -25,7 +32,10 @@ angular.module('archives').controller('ArchivesController', ['$scope', '$modal',
 				$location.path('archives/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.title = '';
+				$scope.description = '';
+				$scope.thumbnail = '';
+				$scope.media = [];
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -37,7 +47,7 @@ angular.module('archives').controller('ArchivesController', ['$scope', '$modal',
 				archive.$remove();
 
 				for (var i in $scope.archives) {
-					if ($scope.archives [i] === archive) {
+					if ($scope.archives[i] === archive) {
 						$scope.archives.splice(i, 1);
 					}
 				}
@@ -51,6 +61,18 @@ angular.module('archives').controller('ArchivesController', ['$scope', '$modal',
 		// Update existing Archive
 		$scope.update = function() {
 			var archive = $scope.archive;
+
+			var thumbnail = 'modules/archives/img/no_image_available.png';
+			if(archive.media && archive.media.length) {
+				for (var i in archive.media) {
+					if (archive.media[i].mediaType === 'vimeo') {
+						thumbnail = 'https://i.vimeocdn.com/video/' + archive.media[0].mediaInfo + '_200x150.webp';
+						break;
+					} else {
+						thumbnail = 'modules/archives/img/soundcloud.png';
+					}
+				}
+			}
 
 			archive.$update(function() {
 				$location.path('archives/' + archive._id);
@@ -114,10 +136,19 @@ angular.module('archives').controller('ArchivesController', ['$scope', '$modal',
 
 			modalInstance.result.then(function (media) {				
 				if(media) {
-					for(var i in $scope.archive.media) {
-						if($scope.archive.media[i]._id === media._id) {
-							$scope.archive.media[i] = media;
-							break;
+					if($scope.archive) {
+						for(var i in $scope.archive.media) {
+							if($scope.archive.media[i]._id === media._id) {
+								$scope.archive.media[i] = media;
+								break;
+							}
+						}
+					} else {
+						for(var i in $scope.media) {
+							if($scope.media[i].tempId === media.tempId) {
+								$scope.media[i] = media;
+								break;
+							}
 						}
 					}
 				}
@@ -128,9 +159,17 @@ angular.module('archives').controller('ArchivesController', ['$scope', '$modal',
 		};
 
 		$scope.removeMedia = function(media) {
-			for (var i in $scope.archive.media) {
-				if ($scope.archive.media[i]._id === media._id) {
-					$scope.archive.media.splice(i, 1);
+			if($scope.archive) {
+				for (var i in $scope.archive.media) {
+					if ($scope.archive.media[i].title === media.title) {
+						$scope.archive.media.splice(i, 1);
+					}
+				}
+			} else {
+				for (var i in $scope.media) {
+					if ($scope.media[i].tempId === media.tempId) {
+						$scope.media.splice(i, 1);
+					}
 				}
 			}
 		};

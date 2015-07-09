@@ -1,11 +1,17 @@
-<div class="videoContainer">
-	<iframe ng-src="{{selectedMedia.videoUrl | trusted}}" width="640" height="361" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+<div class="videoContainer" ng-if="selectedMediaType === 'vimeo'">
+	<iframe ng-src="{{selectedMediaUrl | trusted}}" width="640" height="361" frameborder="0"></iframe>
+</div>
+<div class="videoContainer" ng-if="selectedMediaType === 'soundcloud'">
+	<iframe width="640" height="166" scrolling="no" frameborder="no" ng-src="{{selectedMediaUrl | trusted}}"></iframe>
 </div>
 <div class="mediaList">
 	<div data-ng-repeat="m in media" class="media single-media">
 		<a href="" ng-click="setMedia(m)">
-	        <div class="media-left">
-	                <img class="media-object" ng-src="{{m.thumbnailUrl}}" alt="example">
+	        <div ng-if="m.mediaType === 'vimeo'" class="media-left">
+	            <img class="media-object" ng-src="http://i.vimeocdn.com/video/{{m.mediaInfo}}_100x75.webp" alt="example">
+	        </div>
+	        <div ng-if="m.mediaType === 'soundcloud'" class="media-left">
+	            <img class="media-object" width="100px" height="75px" ng-src="modules/archives/img/soundcloud.png" alt="example">
 	        </div>
 	        <div class="media-body">
 	            <h4 class="media-heading"  data-ng-bind="m.title"></h4>

@@ -11,15 +11,18 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="videoUrl">Video URL</label>
+				<label class="control-label" for="mediaType">Media Type</label>
 				<div class="controls">
-					<input name="videoUrl" type="text" data-ng-model="videoUrl" id="videoUrl" class="form-control" placeholder="Video URL">
+					<div class="btn-group" data-toggle="buttons">
+				        <label class="btn btn-primary" data-ng-model="mediaType" btn-radio="'vimeo'">Vimeo</label>
+				        <label class="btn btn-primary" data-ng-model="mediaType" btn-radio="'soundcloud'">Soundcloud</label>
+				    </div>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="thumbnailUrl">Thumbnail URL</label>
+				<label class="control-label" for="mediaInfo">Media Info</label>
 				<div class="controls">
-					<input name="thumbnailUrl" type="text" data-ng-model="thumbnailUrl" id="thumbnailUrl" class="form-control" placeholder="Thumbnail URL">
+					<input name="mediaInfo" type="text" data-ng-model="mediaInfo" id="mediaInfo" class="form-control" placeholder="Media Info">
 				</div>
 			</div>
 			<div class="form-group">

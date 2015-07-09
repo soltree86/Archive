@@ -16,12 +16,17 @@ var mongoose = require('mongoose'),
 			trim: true,
 			required: 'Title cannot be blank'
 		},
-		thumbnailUrl: {
+		mediaType: {
+			type: String,
+			enum: ['vimeo', 'soundcloud'],
+			default: 'vimeo'
+		},
+		thumbnail: {
 			type: String,
 			default: '',
 			trim: true
 		},
-		videoUrl: {
+		mediaInfo: {
 			type: String,
 			default: '',
 			trim: true
@@ -53,7 +58,7 @@ var ArchiveSchema = new Schema({
 		default: '',
 		trim: true
 	},
-	thumbnailUrl: {
+	thumbnail: {
 		type: String,
 		default: '',
 		trim: true
